@@ -18,22 +18,3 @@ def draw_snake(self):
 def check_fail(self):
     if not 0 <= self.snake.body[0].x < cell_number or not 0 <= self.snake.body[0].y < cell_number:
         self.game_over()
-
-
-def draw_checkerboard(self):
-    checkerboard_color = (211, 153, 255)
-    for row in range(cell_number):
-        if row % 2 == 0:
-            for col in range(cell_number):
-                if col % 2 == 0:
-                    checkerboard_rect = pygame.Rect(
-                        col * cell_size, row*cell_size, cell_size, cell_size)
-                    pygame.draw.rect(
-                        screen, checkerboard_color, checkerboard_rect)
-        else:
-            for col in range(cell_number):
-                if col % 2 != 0:
-                    checkerboard_rect = pygame.Rect(
-                        col * cell_size, row*cell_size, cell_size, cell_size)
-                    pygame.draw.rect(
-                        screen, checkerboard_color, checkerboard_rect)
