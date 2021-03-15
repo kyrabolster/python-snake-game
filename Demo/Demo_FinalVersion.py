@@ -59,7 +59,7 @@ class MAIN:
         self.is_game_run = False
 
     def update(self):
-        if self.is_game_run == True and self.is_game_over == False:
+        if self.is_game_run == True:
             self.snake.move_snake()
             self.check_collision()
             self.check_fail()
@@ -121,38 +121,29 @@ class MAIN:
 
     def draw_game_over(self):
         game_over_text = "Game Over :("
-        game_score_text = "Your score is: " + str(len(self.snake.body)-3)
-        restart_text = "Press any key to restart"
-
         game_over_surface = game_over_font.render(
             game_over_text, True, (pygame.Color('red')))
-
-        game_score_surface = game_over_font.render(
-            game_score_text, True, (pygame.Color('black')))
-
-        restart_surface = game_font.render(
-            restart_text, True, (pygame.Color('black')))
-
         game_over_x = (cell_size * cell_number) / 2
         game_over_y = (cell_size * cell_number) / 4 + 100
-
-        game_score_x = (cell_size * cell_number) / 2
-        game_score_y = (cell_size * cell_number / 4) + 160
-
-        restart_x = (cell_size * cell_number) / 2
-        restart_y = (cell_size * cell_number / 4) + 230
-
         game_over_rect = game_over_surface.get_rect(
             center=(game_over_x, game_over_y))
+        screen.blit(game_over_surface, game_over_rect)
 
+        game_score_text = "Your score is: " + str(len(self.snake.body)-3)
+        game_score_x = (cell_size * cell_number) / 2
+        game_score_y = (cell_size * cell_number / 4) + 160
+        game_score_surface = game_over_font.render(
+            game_score_text, True, (pygame.Color('black')))
         game_score_rect = game_score_surface.get_rect(
             center=(game_score_x, game_score_y))
-
-        restart_rect = restart_surface.get_rect(
-            center=(restart_x, restart_y))
-
-        screen.blit(game_over_surface, game_over_rect)
         screen.blit(game_score_surface, game_score_rect)
+
+        restart_text = "Press any key to restart"
+        restart_x = (cell_size * cell_number) / 2
+        restart_y = (cell_size * cell_number / 4) + 230
+        restart_surface = game_font.render(
+            restart_text, True, (pygame.Color('black')))
+        restart_rect = restart_surface.get_rect(center=(restart_x, restart_y))
         screen.blit(restart_surface, restart_rect)
 
     def reset_game(self):
